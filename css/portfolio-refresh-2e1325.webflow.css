@@ -167,7 +167,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   padding-top: 64px;
-  padding-bottom: 32px;
+  padding-bottom: 80px;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
@@ -277,6 +277,10 @@ body {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   font-family: Lato, sans-serif;
   color: #00171f;
   font-size: 24px;
@@ -342,6 +346,10 @@ body {
   bottom: auto;
   padding-right: 0px;
   padding-left: 0px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   font-family: Lato, sans-serif;
   color: #582cd7;
   font-size: 16px;
@@ -2773,16 +2781,15 @@ body {
   }
 
   .columns-11 {
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
-    -webkit-align-content: space-between;
-    -ms-flex-line-pack: justify;
-    align-content: space-between;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
   }
 
   .body-about {
