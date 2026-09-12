@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { motion } from 'motion/react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 
 type NodeId = 'ai' | 'design' | 'engineering' | 'enablement' | 'product' | 'business' | 'center';
@@ -14,12 +14,12 @@ interface NodeDef {
 }
 
 const NODES: NodeDef[] = [
-  { id: 'ai', label: 'AI', x: 50, y: 7, description: "What comes next", tag: "Emerging" },
-  { id: 'design', label: 'Design', x: 13, y: 32, description: 'Understanding people', tag: "Lens" },
-  { id: 'engineering', label: 'Engineering', x: 87, y: 32, description: 'How things get built', tag: "Foundation" },
-  { id: 'enablement', label: 'Enablement', x: 13, y: 68, description: 'How orgs learn & adopt', tag: "Horizon" },
-  { id: 'product', label: 'Product', x: 87, y: 68, description: 'What to build & why', tag: "Lens" },
-  { id: 'business', label: 'Business', x: 50, y: 93, description: 'Zooming out for value', tag: "Lens" },
+  { id: 'ai',          label: 'AI',          x: 50, y:  7, description: 'What comes next',        tag: 'Emerging'   },
+  { id: 'design',      label: 'Design',      x: 13, y: 32, description: 'Understanding people',   tag: 'Lens'       },
+  { id: 'engineering', label: 'Engineering', x: 87, y: 32, description: 'How things get built',   tag: 'Foundation' },
+  { id: 'enablement',  label: 'Enablement',  x: 13, y: 68, description: 'How orgs learn & adopt', tag: 'Horizon'    },
+  { id: 'product',     label: 'Product',     x: 87, y: 68, description: 'What to build & why',    tag: 'Lens'       },
+  { id: 'business',    label: 'Business',    x: 50, y: 93, description: 'Zooming out for value',  tag: 'Lens'       },
 ];
 
 const CENTER = { x: 50, y: 50 };
@@ -31,48 +31,51 @@ interface EdgeDef {
 }
 
 const EDGES: EdgeDef[] = [
-  { x1: 50, y1: 50, x2: 50, y2: 7, nodes: ['center', 'ai'] },
-  { x1: 50, y1: 50, x2: 13, y2: 32, nodes: ['center', 'design'] },
-  { x1: 50, y1: 50, x2: 87, y2: 32, nodes: ['center', 'engineering'] },
-  { x1: 50, y1: 50, x2: 13, y2: 68, nodes: ['center', 'enablement'] },
-  { x1: 50, y1: 50, x2: 87, y2: 68, nodes: ['center', 'product'] },
-  { x1: 50, y1: 50, x2: 50, y2: 93, nodes: ['center', 'business'] },
-  { x1: 87, y1: 32, x2: 87, y2: 68, nodes: ['engineering', 'product'] },
-  { x1: 13, y1: 32, x2: 13, y2: 68, nodes: ['design', 'enablement'] },
-  { x1: 50, y1: 7, x2: 87, y2: 32, nodes: ['ai', 'engineering'] },
-  { x1: 87, y1: 68, x2: 50, y2: 93, nodes: ['product', 'business'] },
-  { x1: 13, y1: 32, x2: 50, y2: 7, nodes: ['design', 'ai'] },
+  { x1: 50, y1: 50, x2: 50, y2:  7, nodes: ['center', 'ai']           },
+  { x1: 50, y1: 50, x2: 13, y2: 32, nodes: ['center', 'design']       },
+  { x1: 50, y1: 50, x2: 87, y2: 32, nodes: ['center', 'engineering']  },
+  { x1: 50, y1: 50, x2: 13, y2: 68, nodes: ['center', 'enablement']   },
+  { x1: 50, y1: 50, x2: 87, y2: 68, nodes: ['center', 'product']      },
+  { x1: 50, y1: 50, x2: 50, y2: 93, nodes: ['center', 'business']     },
+  { x1: 87, y1: 32, x2: 87, y2: 68, nodes: ['engineering', 'product']    },
+  { x1: 13, y1: 32, x2: 13, y2: 68, nodes: ['design',      'enablement'] },
+  { x1: 50, y1:  7, x2: 87, y2: 32, nodes: ['ai',          'engineering'] },
+  { x1: 87, y1: 68, x2: 50, y2: 93, nodes: ['product',     'business']   },
+  { x1: 13, y1: 32, x2: 50, y2:  7, nodes: ['design',      'ai']         },
 ];
 
 export const Hero = () => {
   const [hoveredNode, setHoveredNode] = useState<NodeId | null>(null);
-  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
-  const graphRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-    setMouseOffset({ x, y });
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    setMouseOffset({ x: 0, y: 0 });
-    setHoveredNode(null);
-  }, []);
-
-  const getParallax = (nx: number, ny: number) => {
-    const dx = (nx - 50) / 50;
-    const dy = (ny - 50) / 50;
-    const depth = Math.sqrt(dx * dx + dy * dy);
-    return {
-      x: mouseOffset.x * depth * 2,
-      y: mouseOffset.y * depth * 1.5,
-    };
-  };
 
   const isEdgeLit = (edge: EdgeDef) =>
     hoveredNode !== null && edge.nodes.includes(hoveredNode);
+
+  const hoveredDef = hoveredNode && hoveredNode !== 'center'
+    ? NODES.find(n => n.id === hoveredNode)
+    : null;
+
+  // Tooltip placement rules (SVG labels are above/below each node, so):
+  // - Left nodes  → tooltip to the RIGHT  (clear of label which is above/below)
+  // - Right nodes → tooltip to the LEFT   (clear of label which is above/below)
+  // - AI (top centre, y=7)  → tooltip below the label; label sits at ~13% so anchor top at 15%
+  // - Business (bottom centre, y=93) → tooltip above the label; label sits at ~89% so anchor bottom at 15%
+  const tooltipStyle = (node: NodeDef): React.CSSProperties => {
+    const common: React.CSSProperties = { position: 'absolute', pointerEvents: 'none', zIndex: 30, whiteSpace: 'nowrap' };
+    if (node.x < 25) {
+      // Design (32%) and Enablement (68%) — to the right, vertically centred on dot
+      return { ...common, left: `${node.x}%`, top: `${node.y}%`, transform: 'translateX(14px) translateY(-50%)' };
+    }
+    if (node.x > 75) {
+      // Engineering (32%) and Product (68%) — to the left, vertically centred on dot
+      return { ...common, left: `${node.x}%`, top: `${node.y}%`, transform: 'translateX(calc(-100% - 14px)) translateY(-50%)' };
+    }
+    if (node.y < 20) {
+      // AI — below circle; SVG label baseline is ~13%, start tooltip at 15%
+      return { ...common, left: '50%', top: '15%', transform: 'translateX(-50%)' };
+    }
+    // Business — above circle; SVG label top is ~88%, end tooltip at ~86%
+    return { ...common, left: '50%', bottom: '15%', transform: 'translateX(-50%)' };
+  };
 
   return (
     <section className="relative min-h-screen flex flex-col bg-neutral-950 overflow-hidden">
@@ -154,26 +157,22 @@ export const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right — interactive graph */}
+        {/* Right — graph (pure SVG, single coordinate system) */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.4, delay: 0.5 }}
-          ref={graphRef}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          className="flex-1 w-full max-w-[360px] md:max-w-[440px] lg:max-w-[520px] xl:max-w-[580px]"
-          style={{ aspectRatio: '1 / 1', position: 'relative' }}
+          className="flex-1 w-full max-w-[360px] md:max-w-[440px] lg:max-w-[520px] xl:max-w-[560px] relative"
+          style={{ aspectRatio: '1 / 1' }}
         >
-          {/* SVG edges — percentage coordinates match the div positions */}
+          {/* All graph elements in one SVG — circles and lines share coordinates */}
           <svg
-            width="100%"
-            height="100%"
-            className="absolute inset-0"
+            viewBox="0 0 100 100"
+            className="w-full h-full"
           >
             <defs>
-              <filter id="nodeglow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="0.8" result="blur" />
+              <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="1.5" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
                   <feMergeNode in="SourceGraphic" />
@@ -181,147 +180,173 @@ export const Hero = () => {
               </filter>
             </defs>
 
+            {/* Edges */}
             {EDGES.map((edge, i) => {
               const lit = isEdgeLit(edge);
               return (
                 <motion.line
                   key={i}
-                  x1={`${edge.x1}%`} y1={`${edge.y1}%`}
-                  x2={`${edge.x2}%`} y2={`${edge.y2}%`}
-                  stroke={lit ? '#7c6df9' : 'rgba(255,255,255,0.06)'}
-                  strokeWidth={lit ? 1.5 : 0.7}
+                  x1={edge.x1} y1={edge.y1}
+                  x2={edge.x2} y2={edge.y2}
+                  stroke={lit ? '#7c6df9' : 'rgba(255,255,255,0.07)'}
+                  strokeWidth={lit ? 0.45 : 0.2}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.9 + i * 0.07, duration: 0.5 }}
-                  style={{ filter: lit ? 'url(#nodeglow)' : undefined }}
+                  style={{ filter: lit ? 'url(#glow)' : undefined }}
                 />
               );
             })}
-          </svg>
 
-          {/* Peripheral nodes */}
-          {NODES.map((node, i) => {
-            const offset = getParallax(node.x, node.y);
-            const isHovered = hoveredNode === node.id;
-            const labelBelow = node.y < 50;
+            {/* Peripheral nodes */}
+            {NODES.map((node, i) => {
+              const isHovered = hoveredNode === node.id;
+              const labelBelow = node.y < 50;
+              return (
+                <motion.g
+                  key={node.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 + i * 0.09, duration: 0.5 }}
+                  onMouseEnter={() => setHoveredNode(node.id)}
+                  onMouseLeave={() => setHoveredNode(null)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  {/* Transparent hit area */}
+                  <circle cx={node.x} cy={node.y} r={7} fill="transparent" />
 
-            return (
-              <motion.div
-                key={node.id}
-                initial={{ opacity: 0, scale: 0.4 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1 + i * 0.09, duration: 0.45, type: 'spring', bounce: 0.35 }}
-                style={{
-                  position: 'absolute',
-                  left: `${node.x + offset.x}%`,
-                  top: `${node.y + offset.y}%`,
-                  transform: 'translate(-50%, -50%)',
-                  transition: 'left 0.18s ease-out, top 0.18s ease-out',
-                  zIndex: isHovered ? 20 : 10,
-                }}
-                onMouseEnter={() => setHoveredNode(node.id)}
-                onMouseLeave={() => setHoveredNode(null)}
-              >
-                {/* Tooltip */}
-                {isHovered && (
-                  <motion.div
-                    initial={{ opacity: 0, y: labelBelow ? -6 : 6, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.15 }}
-                    className={`absolute pointer-events-none z-30
-                      ${labelBelow ? 'top-full mt-6' : 'bottom-full mb-6'}
-                      ${node.x < 25 ? 'left-0' : node.x > 75 ? 'right-0' : 'left-1/2 -translate-x-1/2'}
-                    `}
-                    style={{ whiteSpace: 'nowrap' }}
-                  >
-                    <div className="bg-neutral-900/95 border border-violet-500/20 rounded-lg px-3 py-2 shadow-xl shadow-black/50">
-                      <p className="text-[9px] font-['DM_Mono'] uppercase tracking-widest text-violet-400 mb-0.5">{node.tag}</p>
-                      <p className="text-[11px] text-neutral-300 font-light">{node.description}</p>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Dot + label */}
-                <div className="relative flex items-center justify-center cursor-pointer">
+                  {/* Ripple on hover */}
                   {isHovered && (
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0.6 }}
-                      animate={{ scale: 3, opacity: 0 }}
-                      transition={{ duration: 0.8, repeat: Infinity }}
-                      className="absolute w-4 h-4 rounded-full bg-violet-400/40"
+                    <motion.circle
+                      cx={node.x} cy={node.y}
+                      fill="none"
+                      stroke="#7c6df9"
+                      strokeWidth="0.25"
+                      initial={{ r: 2, opacity: 0.7 }}
+                      animate={{ r: 7, opacity: 0 }}
+                      transition={{ duration: 0.9, repeat: Infinity }}
                     />
                   )}
-                  <div
-                    className={`w-[10px] h-[10px] rounded-full border-2 transition-all duration-200 ${
-                      isHovered
-                        ? 'bg-violet-400 border-violet-300 shadow-[0_0_14px_rgba(124,109,249,0.9)] scale-125'
-                        : 'bg-neutral-900 border-neutral-600 hover:border-neutral-400 hover:scale-110'
-                    }`}
+
+                  {/* Node dot */}
+                  <circle
+                    cx={node.x} cy={node.y}
+                    r={isHovered ? 2.2 : 1.6}
+                    fill={isHovered ? '#a78bfa' : '#171717'}
+                    stroke={isHovered ? '#c4b5fd' : '#525252'}
+                    strokeWidth={isHovered ? 0.4 : 0.35}
+                    style={{
+                      filter: isHovered ? 'url(#glow)' : undefined,
+                      transition: 'r 0.2s, fill 0.2s, stroke 0.2s',
+                    }}
                   />
-                  <span
-                    className={`absolute whitespace-nowrap text-[9px] font-['DM_Mono'] uppercase tracking-wider transition-colors duration-200 ${
-                      labelBelow ? 'top-full mt-[10px]' : 'bottom-full mb-[10px]'
-                    } ${isHovered ? 'text-violet-300' : 'text-neutral-600 hover:text-neutral-400'}`}
+
+                  {/* Label */}
+                  <text
+                    x={node.x}
+                    y={labelBelow ? node.y + 5.5 : node.y - 4}
+                    textAnchor="middle"
+                    fontSize="2.8"
+                    fontFamily="DM Mono, monospace"
+                    fill={isHovered ? '#c4b5fd' : '#404040'}
+                    letterSpacing="0.4"
+                    style={{ transition: 'fill 0.2s' }}
                   >
-                    {node.label}
-                  </span>
-                </div>
-              </motion.div>
-            );
-          })}
+                    {node.label.toUpperCase()}
+                  </text>
+                </motion.g>
+              );
+            })}
 
-          {/* Center — Amanda */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.4, duration: 0.7, type: 'spring', bounce: 0.4 }}
-            style={{
-              position: 'absolute',
-              left: `${CENTER.x}%`,
-              top: `${CENTER.y}%`,
-              transform: 'translate(-50%, -50%)',
-              zIndex: 15,
-            }}
-            onMouseEnter={() => setHoveredNode('center')}
-            onMouseLeave={() => setHoveredNode(null)}
-          >
-            <div className="relative flex items-center justify-center cursor-pointer">
-              {/* Slow pulse rings */}
-              <motion.div
-                animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.0, 0.3] }}
+            {/* Center — Amanda */}
+            <motion.g
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.4, duration: 0.7 }}
+              onMouseEnter={() => setHoveredNode('center')}
+              onMouseLeave={() => setHoveredNode(null)}
+              style={{ cursor: 'pointer' }}
+            >
+              {/* Outer pulse ring */}
+              <motion.circle
+                cx={CENTER.x} cy={CENTER.y}
+                fill="none"
+                stroke="#6d28d9"
+                strokeWidth="0.25"
+                animate={{ r: [9, 14, 9], opacity: [0.35, 0, 0.35] }}
                 transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-                className="absolute w-20 h-20 rounded-full border border-violet-500/25"
               />
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.1, 0.4] }}
+              {/* Inner ring */}
+              <motion.circle
+                cx={CENTER.x} cy={CENTER.y}
+                fill="none"
+                stroke="#7c3aed"
+                strokeWidth="0.25"
+                animate={{ r: [5.5, 8, 5.5], opacity: [0.45, 0.1, 0.45] }}
                 transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut', delay: 0.7 }}
-                className="absolute w-12 h-12 rounded-full border border-violet-400/35"
               />
-              {/* Core */}
-              <div
-                className={`w-6 h-6 rounded-full transition-all duration-300 flex items-center justify-center ${
-                  hoveredNode === 'center'
-                    ? 'bg-violet-400 shadow-[0_0_28px_rgba(124,109,249,1)] scale-110'
-                    : 'bg-violet-700/50 border border-violet-500/60 shadow-[0_0_16px_rgba(124,109,249,0.45)]'
-                }`}
+              {/* Transparent hit area */}
+              <circle cx={CENTER.x} cy={CENTER.y} r={10} fill="transparent" />
+              {/* Core circle */}
+              <circle
+                cx={CENTER.x} cy={CENTER.y} r={3}
+                fill={hoveredNode === 'center' ? '#a78bfa' : 'rgba(109,40,217,0.45)'}
+                stroke={hoveredNode === 'center' ? '#c4b5fd' : 'rgba(139,92,246,0.55)'}
+                strokeWidth="0.4"
+                style={{
+                  filter: 'url(#glow)',
+                  transition: 'fill 0.3s, stroke 0.3s',
+                }}
+              />
+              {/* Inner white dot */}
+              <circle cx={CENTER.x} cy={CENTER.y} r={0.9} fill="rgba(255,255,255,0.85)" />
+              {/* Label */}
+              <text
+                x={CENTER.x}
+                y={CENTER.y + 11}
+                textAnchor="middle"
+                fontSize="2.8"
+                fontFamily="DM Mono, monospace"
+                fill="#a78bfa"
+                letterSpacing="0.5"
               >
-                <div className="w-2 h-2 rounded-full bg-white/90" />
-              </div>
-              <span className="absolute top-full mt-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] font-['DM_Mono'] uppercase tracking-widest text-violet-400">
-                Amanda
-              </span>
-            </div>
-          </motion.div>
+                AMANDA
+              </text>
+            </motion.g>
 
-          {/* Hover hint */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.2, duration: 1.2 }}
-            className="absolute bottom-0 inset-x-0 text-center text-[9px] font-['DM_Mono'] text-neutral-700 uppercase tracking-[0.25em] pointer-events-none"
-          >
-            Hover a node
-          </motion.p>
+            {/* Hint text */}
+            <motion.text
+              x="50" y="99"
+              textAnchor="middle"
+              fontSize="2.4"
+              fontFamily="DM Mono, monospace"
+              fill="#262626"
+              letterSpacing="0.5"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.2, duration: 1.2 }}
+            >
+              HOVER A NODE
+            </motion.text>
+          </svg>
+
+          {/* HTML tooltip — positioned using same percentage coords as SVG nodes */}
+          <AnimatePresence>
+            {hoveredDef && (
+              <motion.div
+                key={hoveredDef.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.15 }}
+                style={tooltipStyle(hoveredDef)}
+                className="bg-neutral-900/95 border border-violet-500/20 rounded-lg px-3 py-2 shadow-xl shadow-black/50"
+              >
+                <p className="text-[9px] font-['DM_Mono'] uppercase tracking-widest text-violet-400 mb-0.5">{hoveredDef.tag}</p>
+                <p className="text-[11px] text-neutral-300 font-light">{hoveredDef.description}</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
 
