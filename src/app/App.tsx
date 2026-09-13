@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Hero } from './components/Hero';
-import { StorySection } from './components/StorySection';
+import { FeaturedWork } from './components/FeaturedWork';
+import { CareerTimeline } from './components/CareerTimeline';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import { Work } from './components/Work';
@@ -26,7 +27,7 @@ const Preloader = () => (
         initial={{ width: 0 }}
         animate={{ width: 80 }}
         transition={{ delay: 0.3, duration: 1.2, ease: 'easeInOut' }}
-        className="h-px bg-violet-500/40"
+        className="h-px bg-blue-500/40"
       />
     </motion.div>
   </motion.div>
@@ -52,7 +53,8 @@ const ScrollToTop = () => {
 const HomePage = () => (
   <>
     <Hero />
-    <StorySection />
+    <FeaturedWork />
+    <CareerTimeline />
     <Footer />
   </>
 );
@@ -74,7 +76,7 @@ function App() {
       </AnimatePresence>
 
       {!loading && (
-        <div className="relative bg-neutral-950 min-h-screen text-white selection:bg-violet-500/20">
+        <div className="relative bg-neutral-950 min-h-screen text-white selection:bg-blue-500/20">
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />

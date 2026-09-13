@@ -1,0 +1,31 @@
+### **The Bridge-Builder’s Journey: From Code to Context**
+
+---
+
+#### **Act I:** **In Medias Res** **— The Crucible at Arctic Wolf**
+
+Picture 200 security engineers trapped in terminal windows, hand-editing raw JSON files and waiting up to half a day for code reviews just to update customer configurations[1][2]. Dropped straight into the middle of this operational bottleneck as a Design Engineer, I inherited a complex JSON-to-UI schema packed with rigid technical constraints[1][2].
+
+Solving this wasn't purely an engineering task, nor was it just a design problem—it required speaking both languages fluently[2]. By bridging frontend development with deep empathy for the engineers' CLI-driven workflows, I led the creation of a React web app that short-circuited the technical overhead, **slashing configuration publishing time by 95% and doubling team velocity**[1][2]**.**
+
+That moment at Arctic Wolf crystallized my core realization: the most friction-heavy challenges in technology don't live inside isolated engineering or design silos—they exist at the boundaries between them[2][3].
+
+---
+
+#### **Act II: Departure &amp; Trials — Gathering the Perspectives**
+
+My path to becoming a cross-disciplinary bridge wasn't a traditional straight line; it was a deliberate Hero's Journey across different organizational worlds to master every angle of product creation[3][4]:
+
+* **The Call to Human Context (CIBC):** I began in traditional software engineering, optimizing open-banking data pipelines for 2 million clients on a Windows XP-era legacy banking app[5][6]. While solving backend data issues, I felt a glaring disconnect—the team was "all tech and no people," building for financial advisors whose actual needs and faces were completely hidden behind the code[6][7].
+* **Advocating for the User (Tecsys &amp; WSIB Lab):** Driven to understand the *why* behind what we build[7], I stepped into product design. At Tecsys, I analyzed user interview video footage to optimize order management flows[8][9]. At the WSIB Innovation Lab, under pandemic conditions, I led end-to-end design for a COVID-19 safety self-assessment app built specifically for socially distanced usability[10][11].
+* **The Executive &amp; High-Velocity Crucible (Deloitte &amp; Wealthsimple):** As a consultant at Deloitte Digital, I viewed product development through an executive lens, orchestrating a tight 6-month legacy-to-Flutter migration across engineering, product, and design that drove a 5x boost in user engagement[12][13]. At Wealthsimple, I returned to engineering with a product designer's mindset, shipping real-time stock option quotes in a fast-paced fintech environment[14][15].
+
+---
+
+#### **Act III: Return with the Elixir — The Intersection of People, Product &amp; AI**
+
+Every stage of the journey led to one central synthesis: my highest value is acting as the translator and catalyst between disparate disciplines that don't speak the same language[3].
+
+At Manulife, I initially architected full-stack "pizza tracker" status workflows that reduced call center volume by 17% by translating business needs into scalable architecture[14]. Today, as a Developer Relations Engineer in Manulife University, I bring all these disciplines together—**upskilling 4,000 learners across the organization in AI-driven tools and automation**, facilitating executive stakeholder roadmaps, and empowering technical teams to drive user-centric innovation[16].
+
+I stand at the **intersection of people, product, and technology**, using a battle-tested background across software engineering, UX design, and business strategy to transform complex systems into intuitive experiences

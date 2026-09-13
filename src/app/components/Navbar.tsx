@@ -19,9 +19,9 @@ export const Navbar = () => {
   }, [location]);
 
   const navItems = [
-    { name: 'Story', to: '/#story' },
-    { name: 'Work', to: '/work' },
-    { name: 'Contact', to: '/#contact' }
+    { name: 'Work', to: '/#work' },
+    { name: 'Story', to: '/#timeline' },
+    { name: 'Contact', to: '/#contact' },
   ];
 
   return (

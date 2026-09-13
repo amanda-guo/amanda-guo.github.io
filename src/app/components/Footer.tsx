@@ -15,7 +15,7 @@ export const Footer = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-[10px] font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-600 mb-6"
+              className="text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-500 mb-6"
             >
               Get in touch
             </motion.p>
@@ -49,7 +49,7 @@ export const Footer = () => {
               </a>
               <div className="flex items-center gap-2 pl-14">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                <span className="text-[10px] font-['DM_Mono'] uppercase tracking-widest text-neutral-600">Open to conversations</span>
+                <span className="text-xs font-['DM_Mono'] uppercase tracking-widest text-neutral-500">Open to conversations</span>
               </div>
             </motion.div>
           </div>
@@ -58,11 +58,11 @@ export const Footer = () => {
           <div className="flex flex-col justify-end gap-10">
             <div className="grid grid-cols-2 gap-10">
               <div>
-                <p className="text-[10px] font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-700 mb-5">Navigate</p>
+                <p className="text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-500 mb-5">Navigate</p>
                 <ul className="space-y-4">
                   {[
-                    { label: 'Story', to: '/#story' },
-                    { label: 'Work', to: '/work' },
+                    { label: 'Work', to: '/#work' },
+                    { label: 'Story', to: '/#timeline' },
                     { label: 'Contact', to: '/#contact' },
                   ].map(item => (
                     <li key={item.label}>
@@ -78,7 +78,7 @@ export const Footer = () => {
                 </ul>
               </div>
               <div>
-                <p className="text-[10px] font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-700 mb-5">Elsewhere</p>
+                <p className="text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-500 mb-5">Elsewhere</p>
                 <ul className="space-y-4">
                   {[
                     { label: 'LinkedIn', href: '#' },
@@ -103,10 +103,10 @@ export const Footer = () => {
 
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/5">
-          <p className="text-[10px] font-['DM_Mono'] uppercase tracking-widest text-neutral-700">
+          <p className="text-xs font-['DM_Mono'] uppercase tracking-widest text-neutral-500">
             © 2026 Amanda
           </p>
-          <p className="text-[10px] font-['DM_Mono'] uppercase tracking-widest text-neutral-700">
+          <p className="text-xs font-['DM_Mono'] uppercase tracking-widest text-neutral-500">
             Product · Engineering · Design · People
           </p>
         </div>

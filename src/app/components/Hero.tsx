@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Link } from 'react-router-dom';
 
 type NodeId = 'ai' | 'design' | 'engineering' | 'enablement' | 'product' | 'business' | 'center';
 
@@ -14,12 +13,12 @@ interface NodeDef {
 }
 
 const NODES: NodeDef[] = [
-  { id: 'ai',          label: 'AI',          x: 50, y:  7, description: 'What comes next',        tag: 'Emerging'   },
-  { id: 'design',      label: 'Design',      x: 13, y: 32, description: 'Understanding people',   tag: 'Lens'       },
-  { id: 'engineering', label: 'Engineering', x: 87, y: 32, description: 'How things get built',   tag: 'Foundation' },
-  { id: 'enablement',  label: 'Enablement',  x: 13, y: 68, description: 'How orgs learn & adopt', tag: 'Horizon'    },
-  { id: 'product',     label: 'Product',     x: 87, y: 68, description: 'What to build & why',    tag: 'Lens'       },
-  { id: 'business',    label: 'Business',    x: 50, y: 93, description: 'Zooming out for value',  tag: 'Lens'       },
+  { id: 'ai',          label: 'AI',          x: 50, y:  7, description: 'AI-driven interfaces',     tag: 'Emerging'   },
+  { id: 'design',      label: 'Design',      x: 13, y: 32, description: 'Understanding people',     tag: 'Lens'       },
+  { id: 'engineering', label: 'Engineering', x: 87, y: 32, description: 'Frontend & full-stack',    tag: 'Foundation' },
+  { id: 'enablement',  label: 'Enablement',  x: 13, y: 68, description: 'How orgs learn & adopt',  tag: 'Horizon'    },
+  { id: 'product',     label: 'Product',     x: 87, y: 68, description: 'What to build & why',     tag: 'Lens'       },
+  { id: 'business',    label: 'Business',    x: 50, y: 93, description: 'Zooming out for value',   tag: 'Lens'       },
 ];
 
 const CENTER = { x: 50, y: 50 };
@@ -54,35 +53,26 @@ export const Hero = () => {
     ? NODES.find(n => n.id === hoveredNode)
     : null;
 
-  // Tooltip placement rules (SVG labels are above/below each node, so):
-  // - Left nodes  → tooltip to the RIGHT  (clear of label which is above/below)
-  // - Right nodes → tooltip to the LEFT   (clear of label which is above/below)
-  // - AI (top centre, y=7)  → tooltip below the label; label sits at ~13% so anchor top at 15%
-  // - Business (bottom centre, y=93) → tooltip above the label; label sits at ~89% so anchor bottom at 15%
   const tooltipStyle = (node: NodeDef): React.CSSProperties => {
     const common: React.CSSProperties = { position: 'absolute', pointerEvents: 'none', zIndex: 30, whiteSpace: 'nowrap' };
     if (node.x < 25) {
-      // Design (32%) and Enablement (68%) — to the right, vertically centred on dot
       return { ...common, left: `${node.x}%`, top: `${node.y}%`, transform: 'translateX(14px) translateY(-50%)' };
     }
     if (node.x > 75) {
-      // Engineering (32%) and Product (68%) — to the left, vertically centred on dot
       return { ...common, left: `${node.x}%`, top: `${node.y}%`, transform: 'translateX(calc(-100% - 14px)) translateY(-50%)' };
     }
     if (node.y < 20) {
-      // AI — below circle; SVG label baseline is ~13%, start tooltip at 15%
       return { ...common, left: '50%', top: '15%', transform: 'translateX(-50%)' };
     }
-    // Business — above circle; SVG label top is ~88%, end tooltip at ~86%
     return { ...common, left: '50%', bottom: '15%', transform: 'translateX(-50%)' };
   };
 
   return (
     <section className="relative min-h-screen flex flex-col bg-neutral-950 overflow-hidden">
-      {/* Ambient atmosphere */}
+      {/* Ambient atmosphere — blue tint */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[20%] left-[15%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] bg-violet-950/25 rounded-full blur-[160px]" />
-        <div className="absolute bottom-[10%] right-[10%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-indigo-950/20 rounded-full blur-[120px]" />
+        <div className="absolute top-[20%] left-[15%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] bg-blue-950/35 rounded-full blur-[160px]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-blue-900/20 rounded-full blur-[120px]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:5rem_5rem]" />
       </div>
 
@@ -95,9 +85,9 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-[10px] font-['DM_Mono'] uppercase tracking-[0.3em] text-violet-400 mb-8"
+            className="text-xs font-['DM_Mono'] uppercase tracking-[0.3em] text-blue-400 mb-8"
           >
-            Portfolio · 2026
+            UX Engineer · AI Interfaces · 2026
           </motion.p>
 
           <motion.h1
@@ -115,19 +105,20 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-base md:text-lg text-neutral-400 font-light leading-relaxed mb-3 max-w-[380px]"
+            className="text-lg text-neutral-300 font-light leading-relaxed mb-3 max-w-[380px]"
           >
-            I work at the intersection of{' '}
-            <span className="text-neutral-200 font-normal">product, technology and people.</span>
+            I build{' '}
+            <span className="text-white font-normal">AI-driven interfaces</span>{' '}
+            at the intersection of engineering, design, and product.
           </motion.p>
 
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.28 }}
-            className="text-sm text-neutral-600 font-light leading-relaxed mb-10 max-w-[340px]"
+            className="text-sm text-neutral-500 font-light leading-relaxed mb-10 max-w-[340px]"
           >
-            Which is a polished way of saying I've spent years figuring out where I fit — and realizing the value was in connecting perspectives that don't speak the same language.
+            I make complex systems feel simple — by speaking the languages of both the people who build them and the people who use them.
           </motion.p>
 
           <motion.div
@@ -137,10 +128,10 @@ export const Hero = () => {
             className="flex items-center gap-6 flex-wrap"
           >
             <a
-              href="#story"
-              className="flex items-center gap-3 text-[10px] font-['DM_Mono'] uppercase tracking-[0.25em] text-white group"
+              href="#work"
+              className="flex items-center gap-3 text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-white group"
             >
-              <span>Come see how I got here</span>
+              <span>See my work</span>
               <motion.span
                 animate={{ y: [0, 5, 0] }}
                 transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
@@ -148,12 +139,12 @@ export const Hero = () => {
               >↓</motion.span>
             </a>
             <span className="w-px h-4 bg-white/10" />
-            <Link
-              to="/work"
-              className="text-[10px] font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-500 hover:text-white transition-colors duration-300"
+            <a
+              href="#timeline"
+              className="text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-400 hover:text-white transition-colors duration-300"
             >
-              View Work →
-            </Link>
+              Read my story →
+            </a>
           </motion.div>
         </div>
 
@@ -165,11 +156,7 @@ export const Hero = () => {
           className="flex-1 w-full max-w-[360px] md:max-w-[440px] lg:max-w-[520px] xl:max-w-[560px] relative"
           style={{ aspectRatio: '1 / 1' }}
         >
-          {/* All graph elements in one SVG — circles and lines share coordinates */}
-          <svg
-            viewBox="0 0 100 100"
-            className="w-full h-full"
-          >
+          <svg viewBox="0 0 100 100" className="w-full h-full">
             <defs>
               <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
                 <feGaussianBlur stdDeviation="1.5" result="blur" />
@@ -188,7 +175,7 @@ export const Hero = () => {
                   key={i}
                   x1={edge.x1} y1={edge.y1}
                   x2={edge.x2} y2={edge.y2}
-                  stroke={lit ? '#7c6df9' : 'rgba(255,255,255,0.07)'}
+                  stroke={lit ? '#3b82f6' : 'rgba(255,255,255,0.07)'}
                   strokeWidth={lit ? 0.45 : 0.2}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -212,15 +199,13 @@ export const Hero = () => {
                   onMouseLeave={() => setHoveredNode(null)}
                   style={{ cursor: 'pointer' }}
                 >
-                  {/* Transparent hit area */}
                   <circle cx={node.x} cy={node.y} r={7} fill="transparent" />
 
-                  {/* Ripple on hover */}
                   {isHovered && (
                     <motion.circle
                       cx={node.x} cy={node.y}
                       fill="none"
-                      stroke="#7c6df9"
+                      stroke="#3b82f6"
                       strokeWidth="0.25"
                       initial={{ r: 2, opacity: 0.7 }}
                       animate={{ r: 7, opacity: 0 }}
@@ -228,12 +213,11 @@ export const Hero = () => {
                     />
                   )}
 
-                  {/* Node dot */}
                   <circle
                     cx={node.x} cy={node.y}
                     r={isHovered ? 2.2 : 1.6}
-                    fill={isHovered ? '#a78bfa' : '#171717'}
-                    stroke={isHovered ? '#c4b5fd' : '#525252'}
+                    fill={isHovered ? '#60a5fa' : '#171717'}
+                    stroke={isHovered ? '#93c5fd' : '#525252'}
                     strokeWidth={isHovered ? 0.4 : 0.35}
                     style={{
                       filter: isHovered ? 'url(#glow)' : undefined,
@@ -241,14 +225,13 @@ export const Hero = () => {
                     }}
                   />
 
-                  {/* Label */}
                   <text
                     x={node.x}
                     y={labelBelow ? node.y + 5.5 : node.y - 4}
                     textAnchor="middle"
                     fontSize="2.8"
                     fontFamily="DM Mono, monospace"
-                    fill={isHovered ? '#c4b5fd' : '#404040'}
+                    fill={isHovered ? '#93c5fd' : '#525252'}
                     letterSpacing="0.4"
                     style={{ transition: 'fill 0.2s' }}
                   >
@@ -267,60 +250,50 @@ export const Hero = () => {
               onMouseLeave={() => setHoveredNode(null)}
               style={{ cursor: 'pointer' }}
             >
-              {/* Outer pulse ring */}
               <motion.circle
                 cx={CENTER.x} cy={CENTER.y}
                 fill="none"
-                stroke="#6d28d9"
+                stroke="#1d4ed8"
                 strokeWidth="0.25"
                 animate={{ r: [9, 14, 9], opacity: [0.35, 0, 0.35] }}
                 transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
               />
-              {/* Inner ring */}
               <motion.circle
                 cx={CENTER.x} cy={CENTER.y}
                 fill="none"
-                stroke="#7c3aed"
+                stroke="#2563eb"
                 strokeWidth="0.25"
                 animate={{ r: [5.5, 8, 5.5], opacity: [0.45, 0.1, 0.45] }}
                 transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut', delay: 0.7 }}
               />
-              {/* Transparent hit area */}
               <circle cx={CENTER.x} cy={CENTER.y} r={10} fill="transparent" />
-              {/* Core circle */}
               <circle
                 cx={CENTER.x} cy={CENTER.y} r={3}
-                fill={hoveredNode === 'center' ? '#a78bfa' : 'rgba(109,40,217,0.45)'}
-                stroke={hoveredNode === 'center' ? '#c4b5fd' : 'rgba(139,92,246,0.55)'}
+                fill={hoveredNode === 'center' ? '#60a5fa' : 'rgba(37,99,235,0.45)'}
+                stroke={hoveredNode === 'center' ? '#93c5fd' : 'rgba(59,130,246,0.55)'}
                 strokeWidth="0.4"
-                style={{
-                  filter: 'url(#glow)',
-                  transition: 'fill 0.3s, stroke 0.3s',
-                }}
+                style={{ filter: 'url(#glow)', transition: 'fill 0.3s, stroke 0.3s' }}
               />
-              {/* Inner white dot */}
               <circle cx={CENTER.x} cy={CENTER.y} r={0.9} fill="rgba(255,255,255,0.85)" />
-              {/* Label */}
               <text
                 x={CENTER.x}
                 y={CENTER.y + 11}
                 textAnchor="middle"
                 fontSize="2.8"
                 fontFamily="DM Mono, monospace"
-                fill="#a78bfa"
+                fill="#60a5fa"
                 letterSpacing="0.5"
               >
                 AMANDA
               </text>
             </motion.g>
 
-            {/* Hint text */}
             <motion.text
               x="50" y="99"
               textAnchor="middle"
               fontSize="2.4"
               fontFamily="DM Mono, monospace"
-              fill="#262626"
+              fill="#404040"
               letterSpacing="0.5"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -330,7 +303,7 @@ export const Hero = () => {
             </motion.text>
           </svg>
 
-          {/* HTML tooltip — positioned using same percentage coords as SVG nodes */}
+          {/* HTML tooltip */}
           <AnimatePresence>
             {hoveredDef && (
               <motion.div
@@ -340,10 +313,10 @@ export const Hero = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.15 }}
                 style={tooltipStyle(hoveredDef)}
-                className="bg-neutral-900/95 border border-violet-500/20 rounded-lg px-3 py-2 shadow-xl shadow-black/50"
+                className="bg-neutral-900/95 border border-blue-500/25 rounded-lg px-3 py-2 shadow-xl shadow-black/50"
               >
-                <p className="text-[9px] font-['DM_Mono'] uppercase tracking-widest text-violet-400 mb-0.5">{hoveredDef.tag}</p>
-                <p className="text-[11px] text-neutral-300 font-light">{hoveredDef.description}</p>
+                <p className="text-[10px] font-['DM_Mono'] uppercase tracking-widest text-blue-400 mb-0.5">{hoveredDef.tag}</p>
+                <p className="text-xs text-neutral-300 font-light">{hoveredDef.description}</p>
               </motion.div>
             )}
           </AnimatePresence>
