@@ -40,6 +40,7 @@ const EDGES: EdgeDef[] = [
   { x1: 13, y1: 32, x2: 13, y2: 68, nodes: ['design',      'enablement'] },
   { x1: 50, y1:  7, x2: 87, y2: 32, nodes: ['ai',          'engineering'] },
   { x1: 87, y1: 68, x2: 50, y2: 88, nodes: ['product',     'business']   },
+  { x1: 13, y1: 68, x2: 50, y2: 88, nodes: ['enablement',  'business']   },
   { x1: 13, y1: 32, x2: 50, y2:  7, nodes: ['design',      'ai']         },
 ];
 

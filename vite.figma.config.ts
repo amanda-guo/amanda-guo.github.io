@@ -1,7 +1,6 @@
 import {
   defineConfig,
   mergeConfig,
-  type ConfigEnv,
   type HtmlTagDescriptor,
   type Plugin,
   type UserConfig,
@@ -15,7 +14,7 @@ import userConfig from './vite.config'
 const FIGMA_ASSET_PREFIX = 'figma:asset/'
 
 export default defineConfig(async (env) =>
-  mergeConfig(await resolveUserConfig(env), {
+  mergeConfig(await resolveUserConfig(), {
     resolve: {
       alias: Object.entries<string>(packageAliases).map(([find, replacement]) => ({
         find,
@@ -48,8 +47,8 @@ export default defineConfig(async (env) =>
   }),
 )
 
-async function resolveUserConfig(env: ConfigEnv): Promise<UserConfig> {
-  return typeof userConfig === 'function' ? await userConfig(env) : await userConfig
+async function resolveUserConfig(): Promise<UserConfig> {
+  return userConfig
 }
 
 function figmaPackageSchemeResolver(): Plugin {
@@ -101,7 +100,7 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
   const clean = (value: string | undefined) => value?.replace(/[^a-zA-Z0-9_-]/g, '') || ''
   const escape = (value: string) =>
     value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-  const title = config.title ?? 'Figma Make App'
+  const title = config.title ?? 'Amanda Guo'
   const description = config.description ?? ''
   const socialImage = config.openGraph?.image ?? ''
   const language = clean(config.language) || 'en'
