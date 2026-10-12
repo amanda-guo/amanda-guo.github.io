@@ -188,7 +188,7 @@ export const FeaturedWork = () => (
           eyebrow="Design"
           title="Design portfolio"
           description="Selected product design, UX strategy, and systems-thinking work across complex digital products."
-          href="https://www.amandaguo.com/design-portfolio/"
+          href="http://amanda-guo.github.io/design-portfolio/"
           action="View design portfolio"
           icon={<Figma className="h-3.5 w-3.5" aria-hidden="true" />}
           preview={<DesignPreview />}
