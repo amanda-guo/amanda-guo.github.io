@@ -72,12 +72,12 @@ export const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col bg-neutral-950 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex flex-col bg-stone-50 dark:bg-neutral-950 overflow-hidden transition-colors duration-300">
       {/* Ambient atmosphere — blue tint */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[20%] left-[15%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] bg-blue-950/35 rounded-full blur-[160px]" />
-        <div className="absolute bottom-[10%] right-[10%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-blue-900/20 rounded-full blur-[120px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:5rem_5rem]" />
+        <div className="absolute top-[20%] left-[15%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] bg-blue-200/45 dark:bg-blue-950/35 rounded-full blur-[160px]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-sky-200/35 dark:bg-blue-900/20 rounded-full blur-[120px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1725540a_1px,transparent_1px),linear-gradient(to_bottom,#1725540a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:5rem_5rem]" />
       </div>
 
       {/* Main layout */}
@@ -89,7 +89,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-xs font-['DM_Mono'] uppercase tracking-[0.3em] text-blue-400 mb-8"
+            className="text-xs font-['DM_Mono'] uppercase tracking-[0.3em] text-blue-700 dark:text-blue-400 mb-8"
           >
             Technical Product Builder · Applied AI
           </motion.p>
@@ -98,31 +98,22 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl sm:text-6xl md:text-7xl xl:text-[5.5rem] font-['Plus_Jakarta_Sans'] font-medium tracking-tighter leading-[0.88] mb-8 text-white"
+            className="text-5xl sm:text-6xl md:text-7xl xl:text-[5.5rem] font-['Plus_Jakarta_Sans'] font-medium tracking-tighter leading-[0.88] mb-8 text-neutral-950 dark:text-white"
           >
             Hi, I'm
             <br />
-            <span className="italic font-['Libre_Baskerville'] font-normal text-neutral-400">Amanda.</span>
+            <span className="italic font-['Libre_Baskerville'] font-normal text-neutral-600 dark:text-neutral-400">Amanda.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg text-neutral-300 font-light leading-relaxed mb-3 max-w-[380px]"
+            className="text-lg text-neutral-700 dark:text-neutral-300 font-light leading-relaxed mb-10 max-w-[480px]"
           >
             I build{' '}
-            <span className="text-white font-normal">AI-driven experiences</span>{' '}
-            at the intersection of engineering, design, and product.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.28 }}
-            className="text-sm text-neutral-300 font-light leading-relaxed mb-10 max-w-[340px]"
-          >
-            I make complex systems feel simple — by speaking the languages of both the people who build them and the people who use them.
+            <span className="text-neutral-950 dark:text-white font-normal">AI-driven experiences</span>{' '}
+            that make complex systems feel simple, working at the intersection of engineering, design, and product to bridge the people who build them and the people who use them.
           </motion.p>
 
           <motion.div
@@ -133,19 +124,19 @@ export const Hero = () => {
           >
             <a
               href="#work"
-              className="flex items-center gap-3 text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-white group"
+              className="flex items-center gap-3 text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-950 dark:text-white group"
             >
               <span>See my work</span>
               <motion.span
                 animate={{ y: [0, 5, 0] }}
                 transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
-                className="text-neutral-300 inline-block"
+                className="text-neutral-700 dark:text-neutral-300 inline-block"
               >↓</motion.span>
             </a>
-            <span className="w-px h-4 bg-white/10" />
+            <span className="w-px h-4 bg-black/15 dark:bg-white/10" />
             <a
               href="#timeline"
-              className="text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-400 hover:text-white transition-colors duration-300"
+              className="text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300"
             >
               Read my story →
             </a>
@@ -179,7 +170,7 @@ export const Hero = () => {
                   key={i}
                   x1={edge.x1} y1={edge.y1}
                   x2={edge.x2} y2={edge.y2}
-                  stroke={lit ? '#3b82f6' : 'rgba(255,255,255,0.07)'}
+                  stroke={lit ? '#2563eb' : 'var(--graph-edge)'}
                   strokeWidth={lit ? 0.45 : 0.2}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -225,8 +216,8 @@ export const Hero = () => {
                   <circle
                     cx={node.x} cy={node.y}
                     r={isHovered ? 2.2 : 1.6}
-                    fill={isHovered ? '#60a5fa' : '#171717'}
-                    stroke={isHovered ? '#93c5fd' : '#525252'}
+                    fill={isHovered ? '#60a5fa' : 'var(--graph-node-fill)'}
+                    stroke={isHovered ? '#2563eb' : 'var(--graph-node-stroke)'}
                     strokeWidth={isHovered ? 0.4 : 0.35}
                     style={{
                       filter: isHovered ? 'url(#glow)' : undefined,
@@ -240,7 +231,7 @@ export const Hero = () => {
                     textAnchor="middle"
                     fontSize="2.8"
                     fontFamily="DM Mono, monospace"
-                    fill={isHovered ? '#bfdbfe' : '#a3a3a3'}
+                    fill={isHovered ? 'var(--graph-active-label)' : 'var(--graph-label)'}
                     letterSpacing="0.4"
                     style={{ transition: 'fill 0.2s' }}
                   >
@@ -293,7 +284,7 @@ export const Hero = () => {
                 textAnchor="middle"
                 fontSize="2.8"
                 fontFamily="DM Mono, monospace"
-                fill="#60a5fa"
+                fill="var(--graph-active-label)"
                 letterSpacing="0.5"
               >
                 AMANDA
@@ -312,8 +303,8 @@ export const Hero = () => {
                 width="30"
                 height="4"
                 rx="2"
-                fill="rgba(255,255,255,0.02)"
-                stroke="rgba(163,163,163,0.45)"
+                fill="var(--graph-instruction-fill)"
+                stroke="var(--graph-instruction-stroke)"
                 strokeWidth="0.2"
               />
               <text
@@ -323,7 +314,7 @@ export const Hero = () => {
                 fontSize="2.15"
                 fontFamily="DM Mono, monospace"
                 fontStyle="italic"
-                fill="#a3a3a3"
+                fill="var(--graph-label)"
                 letterSpacing="0.35"
               >
                 HOVER OVER A NODE
@@ -341,10 +332,10 @@ export const Hero = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.15 }}
                 style={tooltipStyle(hoveredDef)}
-                className="bg-neutral-900/95 border border-blue-500/25 rounded-lg px-3 py-2 shadow-xl shadow-black/50"
+                className="bg-white/95 dark:bg-neutral-900/95 border border-blue-600/30 dark:border-blue-500/25 rounded-lg px-3 py-2 shadow-xl shadow-blue-950/15 dark:shadow-black/50"
               >
-                <p className="text-[10px] font-['DM_Mono'] uppercase tracking-widest text-blue-400 mb-0.5">{hoveredDef.tag}</p>
-                <p className="text-xs text-neutral-300 font-light">{hoveredDef.description}</p>
+                <p className="text-[10px] font-['DM_Mono'] uppercase tracking-widest text-blue-700 dark:text-blue-400 mb-0.5">{hoveredDef.tag}</p>
+                <p className="text-xs text-neutral-700 dark:text-neutral-300 font-light">{hoveredDef.description}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -358,11 +349,11 @@ export const Hero = () => {
         transition={{ delay: 2, duration: 1 }}
         className="relative z-10 flex flex-col items-center gap-3 pb-10"
       >
-        <div className="w-px h-14 overflow-hidden bg-gradient-to-b from-transparent via-white/10 to-transparent">
+        <div className="w-px h-14 overflow-hidden bg-gradient-to-b from-transparent via-black/15 dark:via-white/10 to-transparent">
           <motion.div
             animate={{ y: [-56, 56] }}
             transition={{ repeat: Infinity, duration: 2.5, ease: 'linear' }}
-            className="w-full h-1/2 bg-gradient-to-b from-transparent via-white/40 to-transparent"
+            className="w-full h-1/2 bg-gradient-to-b from-transparent via-blue-700/50 dark:via-white/40 to-transparent"
           />
         </div>
       </motion.div>

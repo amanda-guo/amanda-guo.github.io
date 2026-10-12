@@ -41,9 +41,9 @@ const ACTS: ActDef[] = [
       "The most friction-heavy challenges in technology don't live inside isolated engineering or design silos — they exist at the boundaries between them.",
     tags: ['React', 'TypeScript', 'JSON Schema', 'Design Engineering', 'UX Research'],
     accentColor: '#3b82f6',
-    accentBg: 'bg-blue-500/10',
-    accentBorder: 'border-blue-500/20',
-    accentText: 'text-blue-400',
+    accentBg: 'bg-blue-50 dark:bg-blue-500/10',
+    accentBorder: 'border-blue-200 dark:border-blue-500/20',
+    accentText: 'text-blue-700 dark:text-blue-400',
   },
   {
     id: 'act2',
@@ -63,9 +63,9 @@ const ACTS: ActDef[] = [
       "Switching disciplines wasn't a detour — it was the only way to understand the full picture of what it means to build something for a person.",
     tags: ['UX Research', 'User Interviews', 'Legacy Systems', 'Accessibility', 'Healthcare'],
     accentColor: '#0ea5e9',
-    accentBg: 'bg-sky-500/10',
-    accentBorder: 'border-sky-500/20',
-    accentText: 'text-sky-400',
+    accentBg: 'bg-sky-50 dark:bg-sky-500/10',
+    accentBorder: 'border-sky-200 dark:border-sky-500/20',
+    accentText: 'text-sky-700 dark:text-sky-400',
   },
   {
     id: 'act3',
@@ -85,9 +85,9 @@ const ACTS: ActDef[] = [
       "Seeing the same problem from both the C-suite and the codebase changes how you build. Zoom out and the answer is usually simpler.",
     tags: ['Flutter', 'Cross-Platform', 'Product Strategy', 'React', 'WebSockets', 'Fintech'],
     accentColor: '#34d399',
-    accentBg: 'bg-emerald-500/10',
-    accentBorder: 'border-emerald-500/20',
-    accentText: 'text-emerald-400',
+    accentBg: 'bg-emerald-50 dark:bg-emerald-500/10',
+    accentBorder: 'border-emerald-200 dark:border-emerald-500/20',
+    accentText: 'text-emerald-700 dark:text-emerald-400',
   },
   {
     id: 'act4',
@@ -107,9 +107,9 @@ const ACTS: ActDef[] = [
       "The synthesis is the point. Years of switching disciplines wasn't confusion — it was preparation for a role that doesn't have a name yet.",
     tags: ['AI APIs', 'Developer Relations', 'Full-Stack', 'Node.js', 'React', 'Learning Design'],
     accentColor: '#f59e0b',
-    accentBg: 'bg-amber-500/10',
-    accentBorder: 'border-amber-500/20',
-    accentText: 'text-amber-400',
+    accentBg: 'bg-amber-50 dark:bg-amber-500/10',
+    accentBorder: 'border-amber-200 dark:border-amber-500/20',
+    accentText: 'text-amber-700 dark:text-amber-400',
   },
 ];
 
@@ -118,7 +118,7 @@ export const CareerTimeline = () => {
   const act = ACTS[activeAct];
 
   return (
-    <section id="timeline" className="relative py-28 lg:py-36 border-t border-white/[0.05]">
+    <section id="timeline" className="relative py-28 lg:py-36 border-t border-black/10 dark:border-white/[0.05]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section header */}
         <div className="mb-16">
@@ -127,7 +127,7 @@ export const CareerTimeline = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-xs font-['DM_Mono'] uppercase tracking-[0.3em] text-blue-400 mb-5"
+            className="text-xs font-['DM_Mono'] uppercase tracking-[0.3em] text-blue-700 dark:text-blue-400 mb-5"
           >
             02 · The Path Here
           </motion.p>
@@ -136,18 +136,18 @@ export const CareerTimeline = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-5xl font-['Plus_Jakarta_Sans'] font-medium tracking-tighter text-white leading-[0.95] mb-5"
+            className="text-4xl md:text-5xl font-['Plus_Jakarta_Sans'] font-medium tracking-tighter text-neutral-950 dark:text-white leading-[0.95] mb-5"
           >
             Cross-disciplinary
             <br />
-            <span className="italic font-['Libre_Baskerville'] font-normal text-neutral-300">experience.</span>
+            <span className="italic font-['Libre_Baskerville'] font-normal text-neutral-700 dark:text-neutral-300">experience.</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.12 }}
-            className="text-base text-neutral-300 leading-relaxed max-w-md"
+            className="text-base text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-md"
           >
             Engineering, design, consulting, AI enablement — not a scattered resume, but a deliberate accumulation of perspectives.
           </motion.p>
@@ -171,28 +171,31 @@ export const CareerTimeline = () => {
                 <motion.div
                   animate={{
                     backgroundColor: activeAct === i ? 'rgba(59,130,246,0.15)' : 'rgba(255,255,255,0)',
-                    borderColor: activeAct === i ? a.accentColor : 'rgba(255,255,255,0.15)',
+                    borderColor: activeAct === i ? a.accentColor : 'var(--timeline-inactive-border)',
                   }}
                   transition={{ duration: 0.25 }}
                   className="w-10 h-10 rounded-full flex items-center justify-center border"
                   style={activeAct === i ? { boxShadow: `0 0 16px ${a.accentColor}35` } : {}}
                 >
                   <span
-                    className="text-xs font-['DM_Mono'] transition-colors duration-200"
-                    style={{ color: activeAct === i ? a.accentColor : 'rgba(255,255,255,0.3)' }}
+                    className={`text-xs font-['DM_Mono'] transition-colors duration-200 ${
+                      activeAct === i ? a.accentText : 'text-neutral-700 dark:text-neutral-300'
+                    }`}
                   >
                     {a.number}
                   </span>
                 </motion.div>
                 <span className={`text-[10px] font-['DM_Mono'] uppercase tracking-[0.18em] hidden sm:block transition-colors duration-200 ${
-                  activeAct === i ? 'text-neutral-200' : 'text-neutral-400 group-hover:text-neutral-200'
+                  activeAct === i
+                    ? 'text-neutral-900 dark:text-neutral-200'
+                    : 'text-neutral-600 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-200'
                 }`}>
                   {a.shortTitle}
                 </span>
               </button>
 
               {i < ACTS.length - 1 && (
-                <div className="flex-1 h-px mx-3 sm:mx-4 bg-white/[0.08]" />
+                <div className="flex-1 h-px mx-3 sm:mx-4 bg-black/10 dark:bg-white/[0.08]" />
               )}
             </React.Fragment>
           ))}
@@ -206,7 +209,7 @@ export const CareerTimeline = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden"
+            className="rounded-2xl border border-black/10 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] shadow-sm shadow-blue-950/5 dark:shadow-none overflow-hidden"
           >
             {/* Top accent bar */}
             <div className="h-px w-full" style={{ background: `linear-gradient(to right, ${act.accentColor}70, transparent)` }} />
@@ -215,34 +218,34 @@ export const CareerTimeline = () => {
               {/* Left: metadata + metric */}
               <div>
                 <p className={`text-[11px] font-['DM_Mono'] uppercase tracking-[0.2em] mb-4 ${act.accentText}`}>{act.actLabel}</p>
-                <h3 className="text-2xl font-['Plus_Jakarta_Sans'] font-medium text-white leading-snug mb-2">
+                <h3 className="text-2xl font-['Plus_Jakarta_Sans'] font-medium text-neutral-950 dark:text-white leading-snug mb-2">
                   {act.subheading}
                 </h3>
-                <p className="text-xs text-neutral-300 font-['DM_Mono'] leading-relaxed mb-5">{act.role}</p>
+                <p className="text-xs text-neutral-700 dark:text-neutral-300 font-['DM_Mono'] leading-relaxed mb-5">{act.role}</p>
 
                 <div className="flex flex-wrap gap-1.5 mb-2">
                   {act.companies.map(co => (
-                    <span key={co} className="text-[10px] font-['DM_Mono'] text-neutral-400 border border-white/[0.09] rounded px-2 py-0.5">
+                    <span key={co} className="text-[10px] font-['DM_Mono'] text-neutral-600 dark:text-neutral-400 border border-black/15 dark:border-white/[0.09] rounded px-2 py-0.5">
                       {co}
                     </span>
                   ))}
                 </div>
-                <p className="text-[11px] font-['DM_Mono'] uppercase tracking-[0.18em] text-neutral-300 mb-10">{act.period}</p>
+                <p className="text-[11px] font-['DM_Mono'] uppercase tracking-[0.18em] text-neutral-700 dark:text-neutral-300 mb-10">{act.period}</p>
 
                 {/* Metric */}
                 <div className={`rounded-xl p-5 ${act.accentBg} border ${act.accentBorder}`}>
                   <p className={`text-5xl font-['Plus_Jakarta_Sans'] font-semibold tracking-tighter leading-none mb-2 ${act.accentText}`}>
                     {act.metric}
                   </p>
-                  <p className="text-sm text-neutral-300 mb-1">{act.metricLabel}</p>
-                  <p className="text-xs text-neutral-300">{act.metricSub}</p>
+                  <p className="text-sm text-neutral-800 dark:text-neutral-300 mb-1">{act.metricLabel}</p>
+                  <p className="text-xs text-neutral-700 dark:text-neutral-300">{act.metricSub}</p>
                 </div>
               </div>
 
               {/* Right: narrative + insight + tags */}
               <div className="flex flex-col justify-between">
                 <div>
-                  <p className="text-base text-neutral-300 leading-[1.8] mb-8 font-light">
+                  <p className="text-base text-neutral-700 dark:text-neutral-300 leading-[1.8] mb-8 font-light">
                     {act.narrative}
                   </p>
 
@@ -254,30 +257,30 @@ export const CareerTimeline = () => {
 
                   <div className="flex flex-wrap gap-1.5">
                     {act.tags.map(tag => (
-                      <span key={tag} className="text-[10px] font-['DM_Mono'] uppercase tracking-wider text-neutral-400 border border-white/[0.08] rounded px-2 py-0.5">
+                      <span key={tag} className="text-[10px] font-['DM_Mono'] uppercase tracking-wider text-neutral-600 dark:text-neutral-400 border border-black/15 dark:border-white/[0.08] rounded px-2 py-0.5">
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 mt-10 pt-8 border-t border-white/[0.06]">
+                <div className="flex items-center gap-3 mt-10 pt-8 border-t border-black/10 dark:border-white/[0.06]">
                   <button
                     onClick={() => setActiveAct(i => Math.max(0, i - 1))}
                     disabled={activeAct === 0}
-                    className="text-xs font-['DM_Mono'] uppercase tracking-widest text-neutral-300 disabled:opacity-30 hover:text-white transition-colors disabled:cursor-not-allowed"
+                    className="text-xs font-['DM_Mono'] uppercase tracking-widest text-neutral-700 dark:text-neutral-300 disabled:opacity-30 hover:text-blue-700 dark:hover:text-white transition-colors disabled:cursor-not-allowed"
                   >
                     ← Previous
                   </button>
-                  <span className="text-neutral-400">·</span>
+                  <span className="text-neutral-600 dark:text-neutral-400">·</span>
                   <button
                     onClick={() => setActiveAct(i => Math.min(ACTS.length - 1, i + 1))}
                     disabled={activeAct === ACTS.length - 1}
-                    className="text-xs font-['DM_Mono'] uppercase tracking-widest text-neutral-300 disabled:opacity-30 hover:text-white transition-colors disabled:cursor-not-allowed"
+                    className="text-xs font-['DM_Mono'] uppercase tracking-widest text-neutral-700 dark:text-neutral-300 disabled:opacity-30 hover:text-blue-700 dark:hover:text-white transition-colors disabled:cursor-not-allowed"
                   >
                     Next →
                   </button>
-                  <span className="ml-auto text-[11px] font-['DM_Mono'] text-neutral-300">
+                  <span className="ml-auto text-[11px] font-['DM_Mono'] text-neutral-700 dark:text-neutral-300">
                     {activeAct + 1} / {ACTS.length}
                   </span>
                 </div>

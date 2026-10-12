@@ -39,6 +39,15 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --graph-edge: rgba(23, 37, 84, 0.18);
+  --graph-node-fill: #fafaf9;
+  --graph-node-stroke: #525252;
+  --graph-label: #525252;
+  --graph-active-label: #1d4ed8;
+  --graph-instruction-fill: rgba(23, 37, 84, 0.03);
+  --graph-instruction-stroke: rgba(82, 82, 82, 0.65);
+  --timeline-inactive-border: rgba(23, 23, 23, 0.2);
+  --timeline-inactive-text: rgba(23, 23, 23, 0.72);
 }
 
 .dark {
@@ -76,6 +85,15 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  --graph-edge: rgba(255, 255, 255, 0.1);
+  --graph-node-fill: #171717;
+  --graph-node-stroke: #737373;
+  --graph-label: #a3a3a3;
+  --graph-active-label: #bfdbfe;
+  --graph-instruction-fill: rgba(255, 255, 255, 0.02);
+  --graph-instruction-stroke: rgba(163, 163, 163, 0.45);
+  --timeline-inactive-border: rgba(255, 255, 255, 0.18);
+  --timeline-inactive-text: rgba(255, 255, 255, 0.72);
 }
 
 @theme inline {
