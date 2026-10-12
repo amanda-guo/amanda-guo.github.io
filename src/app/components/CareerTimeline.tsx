@@ -36,7 +36,7 @@ const ACTS: ActDef[] = [
     metricLabel: 'configuration time reduced',
     metricSub: '2× team velocity',
     narrative:
-      "Dropped into a bottleneck where 200 security engineers were hand-editing raw JSON files, waiting up to half a day for configurations to propagate through code review. Solving this wasn't purely an engineering task, nor was it just a design problem — it required speaking both languages fluently. By bridging frontend development with deep empathy for CLI-driven workflows, I led the creation of a React web app generated directly from a JSON schema, short-circuiting the entire pipeline and slashing config publishing time by 95%.",
+      "I was dropped right into a bottleneck where 200 security engineers were hand-editing raw JSON files, waiting up to half a day for configurations to propagate through code review. Solving this wasn't purely an engineering task, nor was it just a design problem — it required speaking both languages fluently. By bridging frontend development with deep empathy for CLI-driven workflows, I led the creation of a React web app generated directly from a JSON schema, short-circuiting the entire pipeline and slashing configuration publishing time by 95%.",
     insight:
       "The most friction-heavy challenges in technology don't live inside isolated engineering or design silos — they exist at the boundaries between them.",
     tags: ['React', 'TypeScript', 'JSON Schema', 'Design Engineering', 'UX Research'],
@@ -100,9 +100,9 @@ const ACTS: ActDef[] = [
     companies: ['Manulife', 'Manulife University'],
     metric: '−17%',
     metricLabel: 'call center volume',
-    metricSub: '4,000 learners upskilled in AI',
+    metricSub: '8,000+ learners upskilled in AI',
     narrative:
-      "At Manulife, I architected full-stack \"pizza tracker\" status workflows that reduced call center volume by 17% — by simply translating the question \"where is my thing?\" into a scalable answer. Today, as a Developer Relations Engineer at Manulife University, I bring all disciplines together: upskilling 4,000 learners in AI-driven tools and automation, facilitating executive stakeholder roadmaps, and empowering technical teams to drive user-centric innovation. Every perspective I've collected has become useful at once.",
+      "At Manulife, I architected full-stack \"pizza tracker\" status workflows that reduced call center volume by 17% — by simply translating the question \"where is my thing?\" into a scalable answer. Today, as a Developer Relations Engineer at Manulife University, I bring all disciplines together: upskilling 8,000+ learners in AI-driven tools and automation, facilitating executive stakeholder roadmaps, and empowering technical teams to drive user-centric innovation. Every perspective I've collected has become useful at once.",
     insight:
       "The synthesis is the point. Years of switching disciplines wasn't confusion — it was preparation for a role that doesn't have a name yet.",
     tags: ['AI APIs', 'Developer Relations', 'Full-Stack', 'Node.js', 'React', 'Learning Design'],
@@ -118,7 +118,7 @@ export const CareerTimeline = () => {
   const act = ACTS[activeAct];
 
   return (
-    <section id="timeline" className="relative py-28 lg:py-36 border-t border-black/10 dark:border-white/[0.05]">
+    <section id="story" className="relative py-28 lg:py-36 border-t border-black/10 dark:border-white/[0.05]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section header */}
         <div className="mb-16">

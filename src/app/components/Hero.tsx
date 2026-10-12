@@ -112,9 +112,9 @@ export const Hero = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-lg text-neutral-700 dark:text-neutral-300 font-light leading-relaxed mb-10 max-w-[480px]"
           >
-            I build{' '}
+            Working at the intersection of engineering, design, and product, I build{' '}
             <span className="text-neutral-950 dark:text-white font-normal">AI-driven experiences</span>{' '}
-            that make complex systems feel simple, working at the intersection of engineering, design, and product to bridge the people who build them and the people who use them.
+            that bridge the gap between complex systems and the people who use them.
           </motion.p>
 
           <motion.div
@@ -136,7 +136,7 @@ export const Hero = () => {
             </a>
             <span className="w-px h-4 bg-black/15 dark:bg-white/10" />
             <a
-              href="#timeline"
+              href="#story"
               className="text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300"
             >
               Read my story →

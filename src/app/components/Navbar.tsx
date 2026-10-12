@@ -26,7 +26,7 @@ export const Navbar = ({ theme, onThemeChange }: NavbarProps) => {
 
   const navItems = [
     { name: 'Work', to: '/#work' },
-    { name: 'Story', to: '/#timeline' },
+    { name: 'Story', to: '/#story' },
     { name: 'Contact', to: '/#contact' },
   ];
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import resumeUrl from '../documents/Guo_Amanda_Resume.pdf';
 
 export const Footer = () => {
   return (
@@ -64,7 +65,7 @@ export const Footer = () => {
                   {[
                     { label: 'Home', to: '/#home' },
                     { label: 'Work', to: '/#work' },
-                    { label: 'Story', to: '/#timeline' },
+                    { label: 'Story', to: '/#story' },
                   ].map(item => (
                     <li key={item.label}>
                       <Link
@@ -85,7 +86,7 @@ export const Footer = () => {
                     { label: 'Design portfolio', href: '#' },
                     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/amanda-guo' },
                     { label: 'GitHub', href: 'https://github.com/amanda-guo' },
-                    { label: 'Resume', href: '#' },
+                    { label: 'Resume', href: resumeUrl },
                   ].map(item => (
                     <li key={item.label}>
                       <a
