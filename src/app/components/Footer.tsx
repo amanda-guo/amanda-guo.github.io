@@ -83,7 +83,7 @@ export const Footer = () => {
                 <p className="text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-700 dark:text-neutral-300 mb-5">Elsewhere</p>
                 <ul className="space-y-4">
                   {[
-                    { label: 'Design portfolio', href: '#' },
+                    { label: 'Design portfolio', href: 'https://www.amandaguo.com/design-portfolio/' },
                     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/amanda-guo' },
                     { label: 'GitHub', href: 'https://github.com/amanda-guo' },
                     { label: 'Resume', href: resumeUrl },
