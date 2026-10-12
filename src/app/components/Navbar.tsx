@@ -54,7 +54,7 @@ export const Navbar = () => {
             >
               <Link
                 to={item.to}
-                className="text-[11px] font-mono uppercase tracking-[0.2em] text-neutral-500 hover:text-white transition-colors duration-300 relative group"
+                className="text-[11px] font-mono uppercase tracking-[0.2em] text-neutral-300 hover:text-white transition-colors duration-300 relative group"
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-white/40 transition-all duration-300 group-hover:w-full" />
@@ -89,7 +89,7 @@ export const Navbar = () => {
                 >
                   <Link
                     to={item.to}
-                    className="text-3xl font-light tracking-tighter text-white hover:text-neutral-500 transition-colors"
+                    className="text-3xl font-light tracking-tighter text-white hover:text-neutral-300 transition-colors"
                   >
                     {item.name}
                   </Link>

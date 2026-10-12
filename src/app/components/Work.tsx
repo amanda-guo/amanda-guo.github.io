@@ -24,7 +24,7 @@ export const Work = () => {
           <div>
             <Link
               to="/"
-              className="text-[10px] font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-600 hover:text-neutral-400 transition-colors mb-8 block"
+              className="text-[10px] font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-300 hover:text-white transition-colors mb-8 block"
             >
               ← Back to Story
             </Link>
@@ -36,7 +36,7 @@ export const Work = () => {
             >
               Selected
               <br />
-              <span className="italic font-['Libre_Baskerville'] font-normal text-neutral-500">Work</span>
+              <span className="italic font-['Libre_Baskerville'] font-normal text-neutral-300">Work</span>
             </motion.h1>
           </div>
 
@@ -44,7 +44,7 @@ export const Work = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="text-neutral-500 font-['Plus_Jakarta_Sans'] font-light text-sm leading-relaxed max-w-xs md:text-right md:pb-2"
+            className="text-neutral-300 font-['Plus_Jakarta_Sans'] font-light text-sm leading-relaxed max-w-xs md:text-right md:pb-2"
           >
             Projects across engineering, design, consulting and technology enablement — told from the perspective of someone who worked across all of them.
           </motion.p>
@@ -64,7 +64,7 @@ export const Work = () => {
               className={`text-[10px] font-['DM_Mono'] uppercase tracking-[0.2em] px-4 py-2 rounded-full border transition-all duration-200 ${
                 activeTag === tag
                   ? 'bg-white text-black border-white'
-                  : 'border-white/10 text-neutral-500 hover:border-white/30 hover:text-neutral-300'
+                  : 'border-white/15 text-neutral-300 hover:border-white/40 hover:text-white'
               }`}
             >
               {tag}
@@ -141,9 +141,9 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
           <div>
             <p className="text-[10px] font-['DM_Mono'] uppercase tracking-widest text-violet-400 mb-1">{project.company}</p>
             <h3 className="text-lg font-['Plus_Jakarta_Sans'] font-medium tracking-tight text-white leading-tight">{project.title}</h3>
-            <p className="text-[11px] font-['DM_Mono'] uppercase tracking-wider text-neutral-600 mt-1">{project.category}</p>
+            <p className="text-[11px] font-['DM_Mono'] uppercase tracking-wider text-neutral-300 mt-1">{project.category}</p>
           </div>
-          <span className="text-[10px] font-['DM_Mono'] text-neutral-700 pt-0.5">{project.year}</span>
+          <span className="text-[10px] font-['DM_Mono'] text-neutral-300 pt-0.5">{project.year}</span>
         </div>
       </motion.div>
 
@@ -167,7 +167,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
             >
               <button
                 onClick={() => setOpen(false)}
-                className="absolute top-7 right-7 p-2 text-neutral-600 hover:text-white transition-colors z-10"
+                className="absolute top-7 right-7 p-2 text-neutral-300 hover:text-white transition-colors z-10"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -183,14 +183,14 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
               <div className="p-8 md:p-10">
                 <p className="text-[10px] font-['DM_Mono'] uppercase tracking-[0.25em] text-violet-400 mb-2">{project.company} · {project.year}</p>
                 <h2 className="text-3xl font-['Plus_Jakarta_Sans'] font-medium tracking-tighter text-white mb-1">{project.title}</h2>
-                <p className="text-[11px] font-['DM_Mono'] uppercase tracking-wider text-neutral-600 mb-6">{project.role}</p>
+                <p className="text-[11px] font-['DM_Mono'] uppercase tracking-wider text-neutral-300 mb-6">{project.role}</p>
 
                 <p className="text-neutral-400 font-['Plus_Jakarta_Sans'] font-light leading-relaxed text-sm mb-8">
                   {project.description}
                 </p>
 
                 <div>
-                  <p className="text-[10px] font-['DM_Mono'] uppercase tracking-widest text-neutral-600 mb-3">Skills & Disciplines</p>
+                  <p className="text-[10px] font-['DM_Mono'] uppercase tracking-widest text-neutral-300 mb-3">Skills & Disciplines</p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map(tag => (
                       <span

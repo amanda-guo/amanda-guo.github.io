@@ -54,17 +54,21 @@ export const Hero = () => {
     : null;
 
   const tooltipStyle = (node: NodeDef): React.CSSProperties => {
-    const common: React.CSSProperties = { position: 'absolute', pointerEvents: 'none', zIndex: 30, whiteSpace: 'nowrap' };
-    if (node.x < 25) {
-      return { ...common, left: `${node.x}%`, top: `${node.y}%`, transform: 'translateX(14px) translateY(-50%)' };
-    }
-    if (node.x > 75) {
-      return { ...common, left: `${node.x}%`, top: `${node.y}%`, transform: 'translateX(calc(-100% - 14px)) translateY(-50%)' };
-    }
-    if (node.y < 20) {
-      return { ...common, left: '50%', top: '15%', transform: 'translateX(-50%)' };
-    }
-    return { ...common, left: '50%', bottom: '15%', transform: 'translateX(-50%)' };
+    const common: React.CSSProperties = {
+      position: 'absolute',
+      pointerEvents: 'none',
+      zIndex: 30,
+      whiteSpace: 'nowrap',
+    };
+    const positions: Record<NodeDef['id'], React.CSSProperties> = {
+      ai: { left: '50%', top: '18%', transform: 'translateX(-50%)' },
+      design: { left: '22%', top: '22%' },
+      engineering: { right: '22%', top: '22%' },
+      enablement: { left: '22%', bottom: '20%' },
+      product: { right: '22%', bottom: '20%' },
+      business: { left: '50%', bottom: '16%', transform: 'translateX(-50%)' },
+    };
+    return { ...common, ...positions[node.id] };
   };
 
   return (
@@ -77,7 +81,7 @@ export const Hero = () => {
       </div>
 
       {/* Main layout */}
-      <div className="relative z-10 flex-1 flex flex-col lg:flex-row items-center max-w-7xl mx-auto w-full px-6 lg:px-12 pt-28 pb-16 gap-12 lg:gap-0">
+      <div className="relative z-10 flex-1 flex flex-col lg:flex-row items-center max-w-7xl mx-auto w-full px-6 lg:px-12 pt-28 pb-12 sm:pb-16 gap-8 sm:gap-12 lg:gap-0">
 
         {/* Left — copy */}
         <div className="flex-1 flex flex-col justify-center lg:pr-20 max-w-xl lg:max-w-none">
@@ -87,14 +91,14 @@ export const Hero = () => {
             transition={{ duration: 0.5 }}
             className="text-xs font-['DM_Mono'] uppercase tracking-[0.3em] text-blue-400 mb-8"
           >
-            UX Engineer · AI Interfaces · 2026
+            Technical Product Builder · Applied AI
           </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-7xl xl:text-[5.5rem] font-['Plus_Jakarta_Sans'] font-medium tracking-tighter leading-[0.88] mb-8 text-white"
+            className="text-5xl sm:text-6xl md:text-7xl xl:text-[5.5rem] font-['Plus_Jakarta_Sans'] font-medium tracking-tighter leading-[0.88] mb-8 text-white"
           >
             Hi, I'm
             <br />
@@ -108,7 +112,7 @@ export const Hero = () => {
             className="text-lg text-neutral-300 font-light leading-relaxed mb-3 max-w-[380px]"
           >
             I build{' '}
-            <span className="text-white font-normal">AI-driven interfaces</span>{' '}
+            <span className="text-white font-normal">AI-driven experiences</span>{' '}
             at the intersection of engineering, design, and product.
           </motion.p>
 
@@ -116,7 +120,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.28 }}
-            className="text-sm text-neutral-500 font-light leading-relaxed mb-10 max-w-[340px]"
+            className="text-sm text-neutral-300 font-light leading-relaxed mb-10 max-w-[340px]"
           >
             I make complex systems feel simple — by speaking the languages of both the people who build them and the people who use them.
           </motion.p>
@@ -135,7 +139,7 @@ export const Hero = () => {
               <motion.span
                 animate={{ y: [0, 5, 0] }}
                 transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
-                className="text-neutral-500 inline-block"
+                className="text-neutral-300 inline-block"
               >↓</motion.span>
             </a>
             <span className="w-px h-4 bg-white/10" />
@@ -197,6 +201,11 @@ export const Hero = () => {
                   transition={{ delay: 1 + i * 0.09, duration: 0.5 }}
                   onMouseEnter={() => setHoveredNode(node.id)}
                   onMouseLeave={() => setHoveredNode(null)}
+                  onFocus={() => setHoveredNode(node.id)}
+                  onBlur={() => setHoveredNode(null)}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`${node.label}: ${node.description}`}
                   style={{ cursor: 'pointer' }}
                 >
                   <circle cx={node.x} cy={node.y} r={7} fill="transparent" />
@@ -231,7 +240,7 @@ export const Hero = () => {
                     textAnchor="middle"
                     fontSize="2.8"
                     fontFamily="DM Mono, monospace"
-                    fill={isHovered ? '#93c5fd' : '#525252'}
+                    fill={isHovered ? '#bfdbfe' : '#a3a3a3'}
                     letterSpacing="0.4"
                     style={{ transition: 'fill 0.2s' }}
                   >
@@ -248,6 +257,9 @@ export const Hero = () => {
               transition={{ delay: 1.4, duration: 0.7 }}
               onMouseEnter={() => setHoveredNode('center')}
               onMouseLeave={() => setHoveredNode(null)}
+              tabIndex={0}
+              role="img"
+              aria-label="Amanda at the intersection of AI, design, engineering, enablement, product, and business"
               style={{ cursor: 'pointer' }}
             >
               <motion.circle
@@ -293,13 +305,13 @@ export const Hero = () => {
               textAnchor="middle"
               fontSize="2.4"
               fontFamily="DM Mono, monospace"
-              fill="#404040"
+              fill="#a3a3a3"
               letterSpacing="0.5"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 2.2, duration: 1.2 }}
             >
-              HOVER A NODE
+              HOVER OVER A NODE
             </motion.text>
           </svg>
 

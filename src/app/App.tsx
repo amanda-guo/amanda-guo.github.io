@@ -20,7 +20,7 @@ const Preloader = () => (
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="flex flex-col items-center gap-5"
     >
-      <p className="text-[10px] font-['DM_Mono'] uppercase tracking-[0.35em] text-neutral-600">
+      <p className="text-[10px] font-['DM_Mono'] uppercase tracking-[0.35em] text-neutral-300">
         Amanda
       </p>
       <motion.div

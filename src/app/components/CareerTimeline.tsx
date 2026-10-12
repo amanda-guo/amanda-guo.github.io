@@ -140,14 +140,14 @@ export const CareerTimeline = () => {
           >
             Cross-disciplinary
             <br />
-            <span className="italic font-['Libre_Baskerville'] font-normal text-neutral-500">experience.</span>
+            <span className="italic font-['Libre_Baskerville'] font-normal text-neutral-300">experience.</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.12 }}
-            className="text-base text-neutral-400 leading-relaxed max-w-md"
+            className="text-base text-neutral-300 leading-relaxed max-w-md"
           >
             Engineering, design, consulting, AI enablement — not a scattered resume, but a deliberate accumulation of perspectives.
           </motion.p>
@@ -185,7 +185,7 @@ export const CareerTimeline = () => {
                   </span>
                 </motion.div>
                 <span className={`text-[10px] font-['DM_Mono'] uppercase tracking-[0.18em] hidden sm:block transition-colors duration-200 ${
-                  activeAct === i ? 'text-neutral-300' : 'text-neutral-600 group-hover:text-neutral-500'
+                  activeAct === i ? 'text-neutral-200' : 'text-neutral-400 group-hover:text-neutral-200'
                 }`}>
                   {a.shortTitle}
                 </span>
@@ -218,7 +218,7 @@ export const CareerTimeline = () => {
                 <h3 className="text-2xl font-['Plus_Jakarta_Sans'] font-medium text-white leading-snug mb-2">
                   {act.subheading}
                 </h3>
-                <p className="text-xs text-neutral-500 font-['DM_Mono'] leading-relaxed mb-5">{act.role}</p>
+                <p className="text-xs text-neutral-300 font-['DM_Mono'] leading-relaxed mb-5">{act.role}</p>
 
                 <div className="flex flex-wrap gap-1.5 mb-2">
                   {act.companies.map(co => (
@@ -227,7 +227,7 @@ export const CareerTimeline = () => {
                     </span>
                   ))}
                 </div>
-                <p className="text-[11px] font-['DM_Mono'] uppercase tracking-[0.18em] text-neutral-500 mb-10">{act.period}</p>
+                <p className="text-[11px] font-['DM_Mono'] uppercase tracking-[0.18em] text-neutral-300 mb-10">{act.period}</p>
 
                 {/* Metric */}
                 <div className={`rounded-xl p-5 ${act.accentBg} border ${act.accentBorder}`}>
@@ -235,7 +235,7 @@ export const CareerTimeline = () => {
                     {act.metric}
                   </p>
                   <p className="text-sm text-neutral-300 mb-1">{act.metricLabel}</p>
-                  <p className="text-xs text-neutral-500">{act.metricSub}</p>
+                  <p className="text-xs text-neutral-300">{act.metricSub}</p>
                 </div>
               </div>
 
@@ -265,19 +265,19 @@ export const CareerTimeline = () => {
                   <button
                     onClick={() => setActiveAct(i => Math.max(0, i - 1))}
                     disabled={activeAct === 0}
-                    className="text-xs font-['DM_Mono'] uppercase tracking-widest text-neutral-500 disabled:opacity-30 hover:text-neutral-300 transition-colors disabled:cursor-not-allowed"
+                    className="text-xs font-['DM_Mono'] uppercase tracking-widest text-neutral-300 disabled:opacity-30 hover:text-white transition-colors disabled:cursor-not-allowed"
                   >
                     ← Previous
                   </button>
-                  <span className="text-neutral-700">·</span>
+                  <span className="text-neutral-400">·</span>
                   <button
                     onClick={() => setActiveAct(i => Math.min(ACTS.length - 1, i + 1))}
                     disabled={activeAct === ACTS.length - 1}
-                    className="text-xs font-['DM_Mono'] uppercase tracking-widest text-neutral-500 disabled:opacity-30 hover:text-neutral-300 transition-colors disabled:cursor-not-allowed"
+                    className="text-xs font-['DM_Mono'] uppercase tracking-widest text-neutral-300 disabled:opacity-30 hover:text-white transition-colors disabled:cursor-not-allowed"
                   >
                     Next →
                   </button>
-                  <span className="ml-auto text-[11px] font-['DM_Mono'] text-neutral-600">
+                  <span className="ml-auto text-[11px] font-['DM_Mono'] text-neutral-300">
                     {activeAct + 1} / {ACTS.length}
                   </span>
                 </div>
