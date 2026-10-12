@@ -102,10 +102,13 @@ const WorkCard = ({
             {eyebrow}
           </span>
           {href && (
-            <ArrowUpRight
-              className="h-4 w-4 text-neutral-300 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white"
-              aria-hidden="true"
-            />
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/[0.04] text-neutral-200 transition-all duration-300 group-hover:border-blue-300/60 group-hover:bg-blue-400/15 group-hover:text-white">
+              <ArrowUpRight
+                className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                strokeWidth={2.75}
+                aria-hidden="true"
+              />
+            </span>
           )}
         </div>
         <h3 className="mb-3 text-2xl font-medium tracking-tight text-white">{title}</h3>
@@ -123,8 +126,11 @@ const WorkCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.55, delay: index * 0.08 }}
+      whileHover={href ? { y: -8 } : undefined}
       className={`group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] ${
-        href ? 'transition-colors duration-300 hover:border-blue-400/45 hover:bg-white/[0.04]' : ''
+        href
+          ? 'shadow-lg shadow-black/10 transition-[border-color,background-color,box-shadow] duration-300 hover:border-blue-300/60 hover:bg-white/[0.05] hover:shadow-2xl hover:shadow-blue-950/40'
+          : ''
       }`}
     >
       {href ? (

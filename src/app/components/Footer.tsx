@@ -41,6 +41,7 @@ export const Footer = () => {
               <a
                 href="mailto:ayzguo@gmail.com"
                 className="group flex items-center gap-4 text-neutral-200 hover:text-white transition-colors duration-300"
+                aria-label="Email Amanda at ayzguo@gmail.com"
               >
                 <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-colors">
                   <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" />
@@ -61,9 +62,9 @@ export const Footer = () => {
                 <p className="text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-300 mb-5">Navigate</p>
                 <ul className="space-y-4">
                   {[
+                    { label: 'Home', to: '/#home' },
                     { label: 'Work', to: '/#work' },
                     { label: 'Story', to: '/#timeline' },
-                    { label: 'Contact', to: '/#contact' },
                   ].map(item => (
                     <li key={item.label}>
                       <Link

@@ -18,7 +18,7 @@ const NODES: NodeDef[] = [
   { id: 'engineering', label: 'Engineering', x: 87, y: 32, description: 'Frontend & full-stack',    tag: 'Foundation' },
   { id: 'enablement',  label: 'Enablement',  x: 13, y: 68, description: 'How orgs learn & adopt',  tag: 'Horizon'    },
   { id: 'product',     label: 'Product',     x: 87, y: 68, description: 'What to build & why',     tag: 'Lens'       },
-  { id: 'business',    label: 'Business',    x: 50, y: 93, description: 'Zooming out for value',   tag: 'Lens'       },
+  { id: 'business',    label: 'Business',    x: 50, y: 88, description: 'Zooming out for value',   tag: 'Lens'       },
 ];
 
 const CENTER = { x: 50, y: 50 };
@@ -35,11 +35,11 @@ const EDGES: EdgeDef[] = [
   { x1: 50, y1: 50, x2: 87, y2: 32, nodes: ['center', 'engineering']  },
   { x1: 50, y1: 50, x2: 13, y2: 68, nodes: ['center', 'enablement']   },
   { x1: 50, y1: 50, x2: 87, y2: 68, nodes: ['center', 'product']      },
-  { x1: 50, y1: 50, x2: 50, y2: 93, nodes: ['center', 'business']     },
+  { x1: 50, y1: 50, x2: 50, y2: 88, nodes: ['center', 'business']     },
   { x1: 87, y1: 32, x2: 87, y2: 68, nodes: ['engineering', 'product']    },
   { x1: 13, y1: 32, x2: 13, y2: 68, nodes: ['design',      'enablement'] },
   { x1: 50, y1:  7, x2: 87, y2: 32, nodes: ['ai',          'engineering'] },
-  { x1: 87, y1: 68, x2: 50, y2: 93, nodes: ['product',     'business']   },
+  { x1: 87, y1: 68, x2: 50, y2: 88, nodes: ['product',     'business']   },
   { x1: 13, y1: 32, x2: 50, y2:  7, nodes: ['design',      'ai']         },
 ];
 
@@ -66,13 +66,13 @@ export const Hero = () => {
       engineering: { right: '22%', top: '22%' },
       enablement: { left: '22%', bottom: '20%' },
       product: { right: '22%', bottom: '20%' },
-      business: { left: '50%', bottom: '16%', transform: 'translateX(-50%)' },
+      business: { left: '50%', bottom: '20%', transform: 'translateX(-50%)' },
     };
     return { ...common, ...positions[node.id] };
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col bg-neutral-950 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex flex-col bg-neutral-950 overflow-hidden">
       {/* Ambient atmosphere — blue tint */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[20%] left-[15%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] bg-blue-950/35 rounded-full blur-[160px]" />
@@ -300,19 +300,35 @@ export const Hero = () => {
               </text>
             </motion.g>
 
-            <motion.text
-              x="50" y="99"
-              textAnchor="middle"
-              fontSize="2.4"
-              fontFamily="DM Mono, monospace"
-              fill="#a3a3a3"
-              letterSpacing="0.5"
+            <motion.g
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 2.2, duration: 1.2 }}
+              aria-hidden="true"
             >
-              HOVER OVER A NODE
-            </motion.text>
+              <rect
+                x="35"
+                y="95"
+                width="30"
+                height="4"
+                rx="2"
+                fill="rgba(255,255,255,0.02)"
+                stroke="rgba(163,163,163,0.45)"
+                strokeWidth="0.2"
+              />
+              <text
+                x="50"
+                y="97.8"
+                textAnchor="middle"
+                fontSize="2.15"
+                fontFamily="DM Mono, monospace"
+                fontStyle="italic"
+                fill="#a3a3a3"
+                letterSpacing="0.35"
+              >
+                HOVER OVER A NODE
+              </text>
+            </motion.g>
           </svg>
 
           {/* HTML tooltip */}
