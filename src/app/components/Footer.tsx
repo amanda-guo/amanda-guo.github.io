@@ -86,7 +86,7 @@ export const Footer = () => {
                     { label: 'Design portfolio', href: 'http://amanda-guo.github.io/design-portfolio/' },
                     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/amanda-guo' },
                     { label: 'GitHub', href: 'https://github.com/amanda-guo' },
-                    { label: 'Resume', href: resumeUrl },
+                    // { label: 'Resume', href: resumeUrl },
                   ].map(item => (
                     <li key={item.label}>
                       <a
