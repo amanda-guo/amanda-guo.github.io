@@ -62,12 +62,33 @@ const GithubPreview = () => (
   </div>
 );
 
-const ComingSoonPreview = () => (
-  <div className="relative flex h-full items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-950 via-neutral-900 to-neutral-950">
-    <div className="absolute h-44 w-44 rounded-full border border-blue-300/10" />
-    <div className="absolute h-32 w-32 rounded-full border border-blue-300/15" />
-    <div className="absolute h-20 w-20 rounded-full border border-blue-300/25 bg-blue-400/[0.06]" />
-    <Sparkles className="relative h-8 w-8 text-blue-300" aria-hidden="true" />
+const SubstackPreview = () => (
+  <div className="relative h-full overflow-hidden bg-gradient-to-br from-amber-950 via-neutral-900 to-neutral-950">
+    <div className="absolute inset-x-[9%] top-[12%] rounded-xl border border-amber-200/20 bg-neutral-950/85 p-5 shadow-2xl shadow-amber-950/30 transition-transform duration-500 group-hover:-translate-y-1">
+      <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-3">
+        <span className="text-[9px] font-['DM_Mono'] uppercase tracking-[0.2em] text-amber-200/80">
+          Notes on AI + Product
+        </span>
+        <Sparkles className="h-4 w-4 text-amber-300" aria-hidden="true" />
+      </div>
+      <p className="mb-2 text-[9px] font-['DM_Mono'] uppercase tracking-[0.16em] text-amber-300/70">
+        From experiment to impact
+      </p>
+      <div className="mb-3 max-w-[15rem] text-lg font-medium leading-tight tracking-tight text-white">
+        Making emerging tech useful
+      </div>
+      <div className="mb-5 space-y-1.5">
+        <div className="h-1 w-full rounded-full bg-white/20" />
+        <div className="h-1 w-5/6 rounded-full bg-white/15" />
+        <div className="h-1 w-2/3 rounded-full bg-white/10" />
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="rounded-full border border-amber-300/25 bg-amber-400/10 px-2 py-1 text-[8px] font-['DM_Mono'] uppercase tracking-wider text-amber-100">
+          Building with AI
+        </span>
+        <span className="text-[9px] text-white/45">Ideas, in progress</span>
+      </div>
+    </div>
   </div>
 );
 
@@ -205,12 +226,13 @@ export const FeaturedWork = () => (
           index={1}
         />
         <WorkCard
-          eyebrow="In progress"
-          title="AI + product"
-          description="Coming soon — more on building useful AI experiences and turning emerging technology into clear product value."
-          action="More on AI and product soon"
+          eyebrow="AI + Product"
+          title="Substack"
+          description="Reflections on building with AI and turning emerging technology into clear product value."
+          href="https://ampanda.substack.com/"
+          action="Read Substack posts"
           icon={<Sparkles className="h-3.5 w-3.5" aria-hidden="true" />}
-          preview={<ComingSoonPreview />}
+          preview={<SubstackPreview />}
           index={2}
         />
       </div>
