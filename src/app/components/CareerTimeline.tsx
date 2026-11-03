@@ -52,7 +52,7 @@ const ACTS: ActDef[] = [
     shortTitle: 'Departure',
     actLabel: 'Act II · Gathering Perspectives',
     subheading: 'User Advocacy & Discovery',
-    role: 'Software Engineer → Product Designer → UX Designer',
+    role: 'Software Engineer → Product → Design',
     companies: ['CIBC', 'Tecsys', 'WSIB Lab'],
     metric: '2M+',
     metricLabel: 'banking clients impacted',
@@ -80,10 +80,10 @@ const ACTS: ActDef[] = [
     metricLabel: 'user engagement boost',
     metricSub: 'Legacy-to-Flutter in 6 months',
     narrative:
-      "As a consultant at Deloitte Digital, I viewed product development through an executive lens for the first time — orchestrating a tight 6-month legacy-to-Flutter migration across engineering, product, and design that drove a 5× boost in user engagement. At Wealthsimple, I returned to engineering with a product designer's mindset, shipping real-time streaming stock option quotes in one of Canada's fastest-moving fintech environments.",
+      "As a consultant at Deloitte Digital, I viewed product development through an executive lens for the first time — orchestrating a tight 6-month legacy-to-Flutter migration across engineering, product, and design that drove a 5× boost in user engagement. At Wealthsimple, I returned to engineering with a product mindset, shipping real-time streaming stock option quotes in one of Canada's fastest-moving fintech environments.",
     insight:
       "Seeing the same problem from both the C-suite and the codebase changes how you build. Zoom out and the answer is usually simpler.",
-    tags: ['Flutter', 'Cross-Platform', 'Product Strategy', 'React', 'WebSockets', 'Fintech'],
+    tags: ['Flutter', 'Cross-Platform', 'Product Strategy', 'React', 'Fintech'],
     accentColor: '#34d399',
     accentBg: 'bg-emerald-50 dark:bg-emerald-500/10',
     accentBorder: 'border-emerald-200 dark:border-emerald-500/20',
@@ -102,10 +102,10 @@ const ACTS: ActDef[] = [
     metricLabel: 'call center volume',
     metricSub: '8,000+ learners upskilled in AI',
     narrative:
-      "At Manulife, I architected full-stack \"pizza tracker\" status workflows that reduced call center volume by 17% — by simply translating the question \"where is my thing?\" into a scalable answer. Today, as a Developer Relations Engineer at Manulife University, I bring all disciplines together: upskilling 8,000+ learners in AI-driven tools and automation, facilitating executive stakeholder roadmaps, and empowering technical teams to drive user-centric innovation. Every perspective I've collected has become useful at once.",
+      "At Manulife, I architected full-stack \"pizza tracker\" status workflows that reduced call center volume by 17% — by simply translating the question \"where is my thing?\" into a scalable answer. Then, as a Developer Relations Engineer at Manulife University, I brought all disciplines together: upskilling 8,000+ learners in AI-driven tools and automation, facilitating executive stakeholder roadmaps, and empowering technical teams to drive user-centric innovation. Every perspective I've collected has become useful at once.",
     insight:
       "The synthesis is the point. Years of switching disciplines wasn't confusion — it was preparation for a role that doesn't have a name yet.",
-    tags: ['AI APIs', 'Developer Relations', 'Full-Stack', 'Node.js', 'React', 'Learning Design'],
+    tags: ['AI', 'Developer Relations', 'Full-Stack', 'Node.js', 'React', 'Learning Design'],
     accentColor: '#f59e0b',
     accentBg: 'bg-amber-50 dark:bg-amber-500/10',
     accentBorder: 'border-amber-200 dark:border-amber-500/20',
