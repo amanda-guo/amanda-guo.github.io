@@ -83,9 +83,10 @@ export const Footer = () => {
                 <p className="text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-700 dark:text-neutral-300 mb-5">Elsewhere</p>
                 <ul className="space-y-4">
                   {[
-                    { label: 'Design portfolio', href: 'http://amanda-guo.github.io/design-portfolio/' },
                     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/amanda-guo' },
+                    { label: 'AI + Product', href: 'https://ampanda.substack.com/' },
                     { label: 'GitHub', href: 'https://github.com/amanda-guo' },
+                    { label: 'Design Portfolio', href: 'http://amanda-guo.github.io/design-portfolio/' },
                     // { label: 'Resume', href: resumeUrl },
                   ].map(item => (
                     <li key={item.label}>
