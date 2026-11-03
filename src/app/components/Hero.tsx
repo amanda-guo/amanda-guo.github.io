@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Link } from 'react-router-dom';
 
 type NodeId = 'ai' | 'design' | 'engineering' | 'enablement' | 'product' | 'business' | 'center';
 
@@ -123,8 +124,8 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.38 }}
             className="flex items-center gap-6 flex-wrap"
           >
-            <a
-              href="#work"
+            <Link
+              to="/#work"
               className="flex items-center gap-3 text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-950 dark:text-white group"
             >
               <span>See my work</span>
@@ -133,14 +134,14 @@ export const Hero = () => {
                 transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
                 className="text-neutral-700 dark:text-neutral-300 inline-block"
               >↓</motion.span>
-            </a>
+            </Link>
             <span className="w-px h-4 bg-black/15 dark:bg-white/10" />
-            <a
-              href="#story"
+            <Link
+              to="/#story"
               className="text-xs font-['DM_Mono'] uppercase tracking-[0.25em] text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300"
             >
               Read my story →
-            </a>
+            </Link>
           </motion.div>
         </div>
 

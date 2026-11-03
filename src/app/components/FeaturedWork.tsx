@@ -206,14 +206,14 @@ export const FeaturedWork = () => (
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         <WorkCard
-          eyebrow="Design"
-          title="Design portfolio"
-          description="Selected product design, UX strategy, and systems-thinking work across complex digital products."
-          href="http://amanda-guo.github.io/design-portfolio/"
-          action="View design portfolio"
-          icon={<Figma className="h-3.5 w-3.5" aria-hidden="true" />}
-          preview={<DesignPreview />}
-          index={0}
+          eyebrow="AI + Product"
+          title="AI and Product Learnings"
+          description="Reflections on building with AI and turning emerging technology into clear product value."
+          href="https://ampanda.substack.com/"
+          action="Read Substack posts"
+          icon={<Sparkles className="h-3.5 w-3.5" aria-hidden="true" />}
+          preview={<SubstackPreview />}
+          index={2}
         />
         <WorkCard
           eyebrow="Engineering"
@@ -226,14 +226,14 @@ export const FeaturedWork = () => (
           index={1}
         />
         <WorkCard
-          eyebrow="AI + Product"
-          title="Substack"
-          description="Reflections on building with AI and turning emerging technology into clear product value."
-          href="https://ampanda.substack.com/"
-          action="Read Substack posts"
-          icon={<Sparkles className="h-3.5 w-3.5" aria-hidden="true" />}
-          preview={<SubstackPreview />}
-          index={2}
+          eyebrow="Design"
+          title="Design Portfolio"
+          description="Selected product design, UX strategy, and systems-thinking work across complex digital products."
+          href="http://amanda-guo.github.io/design-portfolio/"
+          action="View design portfolio"
+          icon={<Figma className="h-3.5 w-3.5" aria-hidden="true" />}
+          preview={<DesignPreview />}
+          index={0}
         />
       </div>
     </div>
